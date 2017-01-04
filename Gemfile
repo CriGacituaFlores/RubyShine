@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'pry'
+
 gem 'faker'
 
 gem 'bower-rails'
