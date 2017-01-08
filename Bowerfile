@@ -3,3 +3,5 @@
 
 # asset 'bootstrap'
 asset 'bootstrap-sass-official'
+asset 'angular', '~> 1.5'
+resolution 'angular', '1.5'
