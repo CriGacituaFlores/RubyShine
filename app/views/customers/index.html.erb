@@ -3,6 +3,49 @@
 	<h2>Documentos: <%= @initial_page %> - <%= @last_page %></h2>
 </header>
 
+<article ng-app="customers" ng-controller="CustomerSearchController">
+	<section class="search-form">
+		<form>
+			<div class="input-group input-group-lg">
+				<label for="keywords" class="sr-only">Keywords</label>
+				<input type="text" name="keywords" class="form-control input-lg" placeholder="First name, Last name, or Email" ng-model="keywords">
+				<span class="input-group-btn">
+					<button class="btn btn-primary btn-lg" ng-click="search(keywords)">Find Customer</button>
+				</span>
+			</div>
+		</form>
+		<h1 class="searchedFor" ng-if="searchedFor">
+				<small>Searched for:</small> {{searchedFor}}
+		</h1>
+		<div ng-repeat="customer in customers">
+			{{customer.first_name}}
+		</div>
+	</section>
+
+	<section class="search-results">
+		<header>
+			<h1 class="h3">Results</h1>
+		</header>
+
+		<%= render partial: 'pager', locals: { keywords: @keywords, page: @page} %>
+
+		<ol class="list-group">
+			<li class="list-group-item clearfix" ng-repeat="customer in customers">
+				<h3 class="pull-right">
+					<small class="text-uppercase">Joined</small> {{ customer.created_at }}
+				</h3>
+				<h2 class="h3">
+					{{ customer.first_name }} {{ customer.last_name }}
+					<small>{{ customer.username }}</small>
+				</h2>
+				<h4>{{ customer.email }}</h4>
+			</li>
+		</ol>
+		<%= render partial: 'pager', locals: { keywords: @keywords, page: @page } %>
+	</section>
+</article>
+
+<!--
 <section>
 	<%= form_for :customers, method: :get do |f| %>
 		<div class="input-group input-group-ld">
@@ -34,3 +77,5 @@
 	</ol>
 	<%= render partial: 'pager', locals: { keywords: @keywords, page: @page } %>
 </section>
+
+-->
