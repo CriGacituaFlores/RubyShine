@@ -7,8 +7,13 @@
 	<section class="search-form">
 		<form>
 			<div class="input-group input-group-lg">
-				<label for="keywords" class="sr-only">Keywords</label>
-				<input type="text" name="keywords" class="form-control input-lg" placeholder="First name, Last name, or Email" ng-model="keywords">
+				<label for="search.keywords" class="sr-only">Keywords</label>
+				<input type="text"
+							 name="keywords"
+							 class="form-control input-lg"
+							 placeholder="First name, Last name, or Email"
+							 ng-change="search(keywords)"
+							 ng-model="keywords">
 				<span class="input-group-btn">
 					<button class="btn btn-primary btn-lg" ng-click="search(keywords)">Find Customer</button>
 				</span>
@@ -32,7 +37,7 @@
 		<ol class="list-group">
 			<li class="list-group-item clearfix" ng-repeat="customer in customers">
 				<h3 class="pull-right">
-					<small class="text-uppercase">Joined</small> {{ customer.created_at }}
+					<small class="text-uppercase">Joined</small> {{ customer.created_at | date }}
 				</h3>
 				<h2 class="h3">
 					{{ customer.first_name }} {{ customer.last_name }}
