@@ -205,6 +205,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  net-ssh
   pg (~> 0.18)
   pry
   puma (~> 3.0)
