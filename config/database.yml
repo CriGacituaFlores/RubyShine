@@ -84,5 +84,6 @@ test:
 production:
   <<: *default
   database: shine_production
-  username: shine
-  password: <%= ENV['SHINE_DATABASE_PASSWORD'] %>
+  host: 127.0.0.1
+  username: deploy
+  password: Ofadown.123
