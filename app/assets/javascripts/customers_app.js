@@ -53,7 +53,7 @@ app.controller("CustomerSearchController", [
 					$scope.customers = response.data;
 					console.log($scope.customers);
 				}, function(response){
-					alert("There was a problem: " + response.status);
+					alert("Ocurrió un problema: " + response.status);
 				});
 		}
 	}
