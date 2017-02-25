@@ -12,6 +12,9 @@ gem 'faker'
 
 gem 'bower-rails'
 
+gem 'angular-rails-templates'
+gem 'sprockets', '~> 3.0'
+
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
