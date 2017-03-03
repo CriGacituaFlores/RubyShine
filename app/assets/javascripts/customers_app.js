@@ -13,8 +13,8 @@ app.config(["$routeProvider",function($routeProvider){
 }]);
 
 app.controller("CustomerDetailController", [
-	"$scope","$http","$routeParams",
-	function($scope,$http,$routeParams){
+	"$scope","$http","$routeParams","$location",
+	function($scope,$http,$routeParams,$location){
 		var customerId = $routeParams.id;
 		$scope.customer = {};
 
@@ -26,6 +26,10 @@ app.controller("CustomerDetailController", [
 				alert("There was a problem: " + response.status);
 			}
 		);
+
+		$scope.backIndex = function() {
+			$location.path("/")
+		}
 	}
 ]);
 
