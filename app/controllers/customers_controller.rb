@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+	#before_action :authenticate_user!
 
 	PAGE_SIZE = 10
 
