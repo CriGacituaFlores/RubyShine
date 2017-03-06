@@ -58,6 +58,7 @@ app.controller("CustomerSearchController", [
 		$scope.customers = [];
 		$scope.search = function(searchTerm){
 			if (searchTerm.length < 3){
+				$scope.customers = [];
 				return;
 			}
 			$scope.searchedFor = searchTerm;
