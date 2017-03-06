@@ -1,0 +1,3 @@
+class CustomersBillingAddress < ApplicationRecord
+
+end

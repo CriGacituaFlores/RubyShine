@@ -1,0 +1,4 @@
+class CustomersShippingAddress < ApplicationRecord
+
+
+end
