@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#Create 50 Address
 50.times do |i|
 	Address.create(
 		street: Faker::Address.street_name,
@@ -14,6 +15,7 @@
 		zipcode: Faker::Address.zip_code)
 end
 
+#Create 350.000 customers
 350_000.times do |i|
 	Customer.create!(
 		first_name: Faker::Name.first_name,
@@ -22,6 +24,7 @@ end
 		email: Faker::Internet.user_name + i.to_s + "@#{Faker::Internet.domain_name}")
 end
 
+#Create 50 states
 State.create!(name: "Alabama" , code: "AL")
 State.create!(name: "Alaska" , code: "AK")
 State.create!(name: "Arizona" , code: "AZ")
@@ -72,3 +75,50 @@ State.create!(name: "Virginia" , code: "VA")
 State.create!(name: "Washington" , code: "WA")
 State.create!(name: "West Virginia" , code: "WV")
 State.create!(name: "Wisconsin" , code: "WI")
+
+#Helper method to create a billing address for a customer
+def create_billing_address(customer_id,num_states)
+	billing_state = State.all[rand(num_states)]
+	billing_address = Address.create!(
+			street: Faker::Address.street_address,
+			city: Faker::Address.city,
+			state: billing_state,
+			zipcode: Faker::Address.zip
+		)
+
+	CustomersBillingAddress.create!(customer_id: customer_id, address: billing_address)
+end
+
+#Helper method to create a shiping addres for a customer
+def create_shipping_address(customer_id,num_states,is_primary)
+	shipping_state = State.all[rand(num_states)]
+	shipping_address = Address.create!(
+			street: Faker::Address.street_address,
+			city: Faker::Address.city,
+			state: shipping_state,
+			zipcode: Faker::Address.zip
+		)
+
+	CustomersShippingAddress.create!(customer_id: customer_id, address: shipping_address, primary: is_primary)
+end
+
+#Guardar en caché el numero de resultado para que no se deba consultar
+num_states = State.all.count
+
+#Para todos los clientes
+Customer.all.pluck(:id).each do |customer_id|
+
+	#Crea un -> billing address para cada uno de los clientes
+	create_billing_address(customer_id,num_states)
+
+	#Crea aleatoreamente -> shipping addresses,
+	#Seguro que se crea almenos uno
+	num_shipping_addresses = rand(4) + 1
+
+	num_shipping_addresses.times do |i|
+		#Crea el -> shipping address, settiando el primero
+		#crearemos como "primary"
+		create_shipping_address(customer_id,num_states, i == 0)
+	end
+
+end
