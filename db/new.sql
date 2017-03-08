@@ -9,15 +9,19 @@ billing_address.id AS billing_address_id,
 billing_address.street AS billing_street,
 billing_address.city AS billing_city,
 billing_address.zipcode AS billing_zipcode,
+billing_state.code AS billing_state,
 shipping_address.id AS shipping_address_id,
 shipping_address.street AS shipping_street,
 shipping_address.city AS shipping_city,
+shipping_state.code AS shipping_state,
 shipping_address.zipcode AS shipping_zipcode
 FROM customers
 JOIN customers_billing_addresses ON
 customers.id = customers_billing_addresses.customer_id
 JOIN addresses billing_address ON
 billing_address.id = customers_billing_addresses.address_id
+JOIN states billing_state ON
+billing_address.state_id = billing_state.id
 JOIN customers_shipping_addresses ON
 customers.id = customers_shipping_addresses.customer_id
 AND customers_shipping_addresses.primary = true
