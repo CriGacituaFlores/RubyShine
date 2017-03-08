@@ -29,3 +29,6 @@ JOIN addresses shipping_address ON
 shipping_address.id = customers_shipping_addresses.address_id
 JOIN states shipping_state ON
 shipping_address.state_id = shipping_state.id;
+
+EXPLAIN ANALYZE
+SELECT * FROM customer_details WHERE customer_id = 2000;
