@@ -29,6 +29,22 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: refresh_customer_details(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION refresh_customer_details() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+  		BEGIN
+  			REFRESH MATERIALIZED VIEW CONCURRENTLY customer_details;
+  			RETURN NULL;
+  		EXCEPTION
+  			WHEN feature_not_supported THEN
+  				RETURN NULL;
+  		END $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -509,6 +525,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170303203532'),
 ('20170308150259'),
 ('20170308201628'),
-('20170308204323');
+('20170308204323'),
+('20170309152337');
 
 
