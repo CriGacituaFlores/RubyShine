@@ -14,22 +14,52 @@ class TriggerRefreshCustomerDetails < ActiveRecord::Migration[5.0]
   		END $$;
   	}
 
-  	%{
-  		(customers
-  		customers_shipping_addresses
-  		customers_billing_addresses
-  		addresses).each do |table|
-  		%execute %{
-  			CREATE TRIGGER refresh_customer_details
-  			AFTER
-  				INSERT OR
-  				UPDATE OR
-  				DELETE
-  			ON table
-  				FOR EACH STATEMENT
-  					EXECUTE PROCEDURE
-  						refresh_customer_details()
-  		}
-  	}
+		execute %{
+			CREATE TRIGGER refresh_customer_details
+			AFTER
+				INSERT OR
+				UPDATE OR
+				DELETE
+			ON customers
+				FOR EACH STATEMENT
+					EXECUTE PROCEDURE
+						refresh_customer_details()
+		}
+
+    execute %{
+      CREATE TRIGGER refresh_customer_details
+      AFTER
+        INSERT OR
+        UPDATE OR
+        DELETE
+      ON customers_shipping_addresses
+        FOR EACH STATEMENT
+          EXECUTE PROCEDURE
+            refresh_customer_details()
+    }
+
+    execute %{
+      CREATE TRIGGER refresh_customer_details
+      AFTER
+        INSERT OR
+        UPDATE OR
+        DELETE
+      ON customers_billing_addresses
+        FOR EACH STATEMENT
+          EXECUTE PROCEDURE
+            refresh_customer_details()
+    }
+
+    execute %{
+      CREATE TRIGGER refresh_customer_details
+      AFTER
+        INSERT OR
+        UPDATE OR
+        DELETE
+      ON addresses
+        FOR EACH STATEMENT
+          EXECUTE PROCEDURE
+            refresh_customer_details()
+    }
   end
 end

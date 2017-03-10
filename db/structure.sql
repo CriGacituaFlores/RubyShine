@@ -511,6 +511,34 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: refresh_customer_details; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER refresh_customer_details AFTER INSERT OR DELETE OR UPDATE ON customers FOR EACH STATEMENT EXECUTE PROCEDURE refresh_customer_details();
+
+
+--
+-- Name: refresh_customer_details; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER refresh_customer_details AFTER INSERT OR DELETE OR UPDATE ON customers_shipping_addresses FOR EACH STATEMENT EXECUTE PROCEDURE refresh_customer_details();
+
+
+--
+-- Name: refresh_customer_details; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER refresh_customer_details AFTER INSERT OR DELETE OR UPDATE ON customers_billing_addresses FOR EACH STATEMENT EXECUTE PROCEDURE refresh_customer_details();
+
+
+--
+-- Name: refresh_customer_details; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER refresh_customer_details AFTER INSERT OR DELETE OR UPDATE ON addresses FOR EACH STATEMENT EXECUTE PROCEDURE refresh_customer_details();
+
+
+--
 -- PostgreSQL database dump complete
 --
 
