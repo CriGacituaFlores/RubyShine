@@ -1,4 +1,4 @@
-var app = angular.module('customers',['ngRoute','templates']);
+var app = angular.module('customers',['ngRoute','ngResource','templates']);
 
 app.config(["$routeProvider",function($routeProvider){
 
@@ -13,19 +13,27 @@ app.config(["$routeProvider",function($routeProvider){
 }]);
 
 app.controller("CustomerDetailController", [
-	"$scope","$http","$routeParams","$location",
-	function($scope,$http,$routeParams,$location){
+	"$scope","$http","$routeParams","$location","$resource",
+	function($scope,$http,$routeParams,$location,$resource){
 		var customerId = $routeParams.id;
-		$scope.customer = {};
+		var Customer = $resource('/customers/:customerId.json')
 
-		$http.get(
-			"/customers/" + customerId + ".json"
-		).then(function(response) {
-			$scope.customer = response.data;
-			},function(response){
-				alert("There was a problem: " + response.status);
-			}
-		);
+		$scope.customer = Customer.get({"customerId": customerId})
+		alert('Ajax call initiated!');
+		console.log($scope.customer);
+
+
+		//EN CASO DE NO USAR $resouce SE UTIIZARA ESTO
+		//$scope.customer = {};
+
+		//$http.get(
+		//	"/customers/" + customerId + ".json"
+		//).then(function(response) {
+		//	$scope.customer = response.data;
+		//	},function(response){
+		//		alert("There was a problem: " + response.status);
+		//	}
+		//);
 
 		$scope.backIndex = function() {
 			$location.path("/")
