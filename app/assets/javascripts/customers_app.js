@@ -19,7 +19,6 @@ app.controller("CustomerDetailController", [
 		var Customer = $resource('/customers/:customerId.json')
 
 		$scope.customer = Customer.get({"customerId": customerId})
-		alert('Ajax call initiated!');
 		console.log($scope.customer);
 
 
@@ -70,29 +69,6 @@ app.controller("CustomerSearchController", [
 				return;
 			}
 			$scope.searchedFor = searchTerm;
-			$scope.customers = [
-				{
-					"first_name":"Schuler",
-					"last_name":"Cremin",
-					"email":"giles0@macgyver.net",
-					"username":"killian0",
-					"created_at":"2015-03-04"
-				},
-				{
-					"first_name":"Cristian",
-					"last_name":"Gacitua",
-					"email":"cgacitua@gacitua.com",
-					"username":"kolvalik",
-					"created_at":"2015-03-04"
-				},
-				{
-					"first_name":"lolo",
-					"last_name":"lalqa",
-					"email":"wewewe0@macgyver.net",
-					"username":"wewewe",
-					"created_at":"2015-03-04"
-				}
-			]
 			$http.get("/customers.json",
 				{"params": {"keywords": searchTerm, "page": page}}
 				).then(function(response){
@@ -102,5 +78,13 @@ app.controller("CustomerSearchController", [
 					alert("Ocurrió un problema: " + response.status);
 				});
 		}
+	}
+]);
+
+app.controller("CustomerCreditCardController", [
+	"$scope","$resource",
+	function($scope,$resource){
+		var CreditCardInfo = $resource('/fake_billing.json')
+		$scope.creditCard = CreditCardInfo.get({"cardholder_id": 1234})
 	}
 ]);
