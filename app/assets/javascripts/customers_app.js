@@ -15,11 +15,11 @@ app.config(["$routeProvider",function($routeProvider){
 app.controller("CustomerDetailController", [
 	"$scope","$http","$routeParams","$location","$resource",
 	function($scope,$http,$routeParams,$location,$resource){
-		var customerId = $routeParams.id;
+		//var customerId = $routeParams.id;
+		$scope.customerId = $routeParams.id;
 		var Customer = $resource('/customers/:customerId.json')
 
-		$scope.customer = Customer.get({"customerId": customerId})
-		console.log($scope.customer);
+		$scope.customer = Customer.get({"customerId": $scope.customerId})
 
 
 		//EN CASO DE NO USAR $resouce SE UTIIZARA ESTO
@@ -85,6 +85,10 @@ app.controller("CustomerCreditCardController", [
 	"$scope","$resource",
 	function($scope,$resource){
 		var CreditCardInfo = $resource('/fake_billing.json')
-		$scope.creditCard = CreditCardInfo.get({"cardholder_id": 1234})
+		$scope.setCardholderId = function(cardholderId){
+			$scope.creditCard = CreditCardInfo.get(
+				{"cardholder_id": cardholderId}
+			)
+		}
 	}
 ]);

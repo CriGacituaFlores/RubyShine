@@ -3,7 +3,7 @@ class FakeBillingController < ApplicationController
 
 	def show
 		if params[:cardholder_id]
-			sleep 3
+			sleep 2
 			render json: {
 				lastFour: Faker::Business.credit_card_number[-4..-1],
 				cardType: Faker::Business.credit_card_type,
