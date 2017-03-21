@@ -37,6 +37,12 @@ app.controller("CustomerDetailController", [
 		$scope.backIndex = function() {
 			$location.path("/")
 		}
+
+		$scope.save = function(){
+			if($scope.form.$valid){
+				alert("formulario valido");
+			}
+		}
 	}
 ]);
 

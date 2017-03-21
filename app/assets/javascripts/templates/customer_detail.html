@@ -7,7 +7,7 @@
 			</li>
 		</ul>
 	</nav>
-	<form>
+	<form novalidate name="form">
 
 		<div class="row">
 			<div class="col-md-6">
@@ -20,15 +20,15 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<label class="sr-only" for="first-name">First name</label>
-									<input type="text" class="form-control" name="first-name" ng-model="customer.first_name">
+									<label class="sr-only" for="first_name">First name</label>
+									<input type="text" class="form-control" required name="first_name" ng-model="customer.first_name">
 								</div>
 							</div>
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<label class="sr-only" for="last-name">Last name</label>
-									<input type="text" class="form-control" name="last-name" ng-model="customer.last_name">
+									<label class="sr-only" for="last_name">Last name</label>
+									<input type="text" class="form-control" required name="last_name" ng-model="customer.last_name">
 								</div>
 							</div>
 
@@ -36,14 +36,14 @@
 								<div class="input-group">
 									<div class="input-group-addon">@</div>
 									<label class="sr-only" for="username">Username</label>
-									<input type="text" class="form-control" name="username" ng-model="customer.username">
+									<input type="text" class="form-control" required name="username" ng-model="customer.username">
 								</div>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="sr-only" for="email">Email</label>
-							<input type="text" class="form-control" name="email" ng-model="customer.email">
+							<input type="text" class="form-control" required name="email" ng-model="customer.email">
 						</div>
 					</section>
 
@@ -59,40 +59,40 @@
 
 					<section class="panel-body">
 						<div class="form-group">
-							<label class="sr-only" for="street-address">
+							<label class="sr-only" for="street_address">
 								Street Address
 							</label>
-							<input type="text" class="form-control" name="street-address" ng-model="customer.shipping_street">
+							<input type="text" class="form-control" required name="street_address" ng-model="customer.shipping_street">
 						</div>
 						<div class="form-group">
-							<label class="sr-only" for="street-address-extra">
+							<label class="sr-only" for="street_address_extra">
 								Street Address Extra
 							</label>
-							<input type="text" class="form-control" name="street-address-extra" value="Unit 101">
+							<input type="text" class="form-control" required name="street_address_extra" ng-model="customer.shipping_street">
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="sr-only" for="city">City</label>
-									<input type="text" class="form-control" name="city" ng-model="customer.shipping_city">
+									<input type="text" class="form-control" required name="city" ng-model="customer.shipping_city">
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="form-group">
-									<label class="sr-only" for="state">State</label>
-									<input type="text" class="form-control" name="state" ng-model="customer.shipping_state">
+									<label class="sr-only" for="shippingState">State</label>
+									<input type="text" class="form-control" required pattern="[A-Z][A-Z]" name="shippingState" ng-model="customer.shipping_state">
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
 									<label class="sr-only" for="zip">Zip</label>
-									<input type="text" class="form-control" name="zip" ng-model="customer.shipping_address_id">
+									<input type="text" class="form-control" required pattern="\d\d\d\d\d" name="zip" ng-model="customer.shipping_zipcode">
 								</div>
 							</div>
 						</div>
 					</section>
 				</article>
-				
+
 			</div>
 
 			<div class="col-md-6">
@@ -131,34 +131,34 @@
 							<footer class="panel-footer">
 								<h3>Billing Address <input type="checkbox"> Same as a shipping? </h3>
 								<div class="form-group">
-									<label class="sr-only" for="street-address">
+									<label class="sr-only" for="street_address_billing">
 										Street Address
 									</label>
-									<input type="text" class="form-control" name="street-address" ng-model="customer.billing_street">
+									<input type="text" class="form-control" required name="street_address_billing" ng-model="customer.billing_street">
 								</div>
 								<div class="form-group">
-									<label class="sr-only" for="street-address-extra">
+									<label class="sr-only" for="street_address_extra_billing">
 										Street Address Extra
 									</label>
-									<input type="text" class="form-control" name="street-address-extra" value="Unit 101">
+									<input type="text" class="form-control" required name="street_address_extra_billing" ng-model="customer.billing_street">
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="sr-only" for="city">City</label>
-											<input type="text" class="form-control" name="city" ng-model="customer.billing_city">
+											<label class="sr-only" for="city_billing">City</label>
+											<input type="text" class="form-control" required name="city_billing" ng-model="customer.billing_city">
 										</div>
 									</div>
 									<div class="col-md-2">
 										<div class="form-group">
-											<label class="sr-only" for="state">State</label>
-											<input type="text" class="form-control" name="state" ng-model="customer.billing_state">
+											<label class="sr-only" for="state_billing">State</label>
+											<input type="text" class="form-control" required name="state_billing" ng-model="customer.billing_state">
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="sr-only" for="zip">Zip</label>
-											<input type="text" class="form-control" name="zip" ng-model="customer.billing_zipcode">
+											<label class="sr-only" for="zip_billing">Zip</label>
+											<input type="text" class="form-control" required name="zip_billing" ng-model="customer.billing_zipcode">
 										</div>
 									</div>
 								</div>
@@ -166,7 +166,11 @@
 						</article>
 					</section>
 				</article>
-
+				<div class="text-right">
+					<button ng-click="save()" class="btn btn-lg btn-primary">
+						Save Changes
+					</button>
+				</div>
 			</div>
 		</div>
 
