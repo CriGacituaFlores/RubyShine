@@ -44,7 +44,7 @@
 						<div class="form-group has-feedback has-error">
 							<label class="sr-only" for="email">Email</label>
 							<input type="text" class="form-control" required name="email" ng-model="customer.email">
-							<p class="help-block" ng-if="form.email.$invalid">
+							<p class="help-block" ng-messages="form.email.$error">
 								<span ng-message="required">Email es requerido</span>
 								<span ng-message="email">Email debe parecer un email</span>
 							</p>
