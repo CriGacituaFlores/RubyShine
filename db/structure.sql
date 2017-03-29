@@ -290,6 +290,7 @@ CREATE TABLE users (
     last_sign_in_ip inet,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    roles character varying[] DEFAULT '{}'::character varying[],
     CONSTRAINT email_must_be_company_email CHECK (((email)::text ~* '^[^@]+@example\.com'::text))
 );
 
@@ -511,6 +512,13 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: users_roles; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX users_roles ON users USING gin (roles);
+
+
+--
 -- Name: refresh_customer_details; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -554,6 +562,8 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170308150259'),
 ('20170308201628'),
 ('20170308204323'),
-('20170309152337');
+('20170309152337'),
+('20170329192040'),
+('20170329194244');
 
 
