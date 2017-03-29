@@ -17,7 +17,9 @@ app.controller("CustomerDetailController", [
 	function($scope,$http,$routeParams,$location,$resource){
 		//var customerId = $routeParams.id;
 		$scope.customerId = $routeParams.id;
-		var Customer = $resource('/customers/:customerId.json')
+		var Customer = $resource('/customers/:customerId.json',
+														{"customerId": "@customer_id"},
+														{ "save": { "method": "PUT" }});
 
 		$scope.customer = Customer.get({"customerId": $scope.customerId})
 
@@ -40,7 +42,16 @@ app.controller("CustomerDetailController", [
 
 		$scope.save = function(){
 			if($scope.form.$valid){
-				alert("formulario valido");
+				$scope.customer.$save(
+					function() {
+						$scope.form.$setPristine();
+						$scope.form.$setUntouched();
+						alert("Guardado con exito");
+					},
+					function() {
+						alert("algo salio mal");
+					}
+				);
 			}
 		}
 	}
