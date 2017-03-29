@@ -13,14 +13,6 @@
 			</span>
 		</div>
 	</form>
-	<!--
-	<h1 class="searchedFor" ng-if="searchedFor">
-			<small>Searched for:</small> {{searchedFor}}
-	</h1>
-	<div ng-repeat="customer in customers">
-		{{customer.first_name}}
-	</div>
-	-->
 </section>
 
 <section class="search-results" ng-if="customers.length > 0">
@@ -38,10 +30,6 @@
 			</li>
 		</ul>
 	</nav>
-
-	<!--
-	<%= render partial: 'pager', locals: { keywords: @keywords, page: @page} %>
-	-->
 
 	<ol class="list-group">
 		<li class="list-group-item clearfix" ng-repeat="customer in customers">
@@ -69,7 +57,4 @@
 			</li>
 		</ul>
 	</nav>
-	<!--
-	<%= render partial: 'pager', locals: { keywords: @keywords, page: @page } %>
-	-->
 </section>
