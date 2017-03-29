@@ -19,21 +19,24 @@
 					<section class="panel-body">
 						<div class="row">
 							<div class="col-md-4">
-								<div class="form-group">
+								<div class="form-group has-feedback" ng-class="{'has-error': form.first_name.$invalid && form.first_name.$dirty, 'has-success': form.first_name.$valid && form.first_name.$touched}">
 									<label class="sr-only" for="first_name">First name</label>
 									<input type="text" class="form-control" required name="first_name" ng-model="customer.first_name">
+									<p class="help-block" ng-messages="form.first_name.$error">
+										<span ng-message="required">Nombre es requerido</span>
+									</p>
 								</div>
 							</div>
 
 							<div class="col-md-4">
-								<div class="form-group">
+								<div class="form-group has-feedback" ng-class="{'has-error': form.last_name.$invalid && form.last_name.$dirty, 'has-success': form.last_name.$valid && form.last_name.$touched}">
 									<label class="sr-only" for="last_name">Last name</label>
 									<input type="text" class="form-control" required name="last_name" ng-model="customer.last_name">
 								</div>
 							</div>
 
 							<div class="col-md-4">
-								<div class="input-group">
+								<div class="input-group has-feedback" ng-class="{'has-error': form.username.$invalid && form.username.$dirty, 'has-success': form.username.$valid && form.username.$touched}">
 									<div class="input-group-addon">@</div>
 									<label class="sr-only" for="username">Username</label>
 									<input type="text" class="form-control" required name="username" ng-model="customer.username">
@@ -41,7 +44,8 @@
 							</div>
 						</div>
 
-						<div class="form-group has-feedback has-error">
+						<div class="form-group has-feedback" ng-class="{'has-error': form.email.$invalid && form.email.$dirty,
+						 'has-success': form.email.$valid && form.email.$touched}">
 							<label class="sr-only" for="email">Email</label>
 							<input type="text" class="form-control" required name="email" ng-model="customer.email">
 							<p class="help-block" ng-messages="form.email.$error">
@@ -62,13 +66,13 @@
 					</header>
 
 					<section class="panel-body">
-						<div class="form-group">
+						<div class="form-group has-feedback" ng-class="{'has-error': form.street_address.$invalid && form.street_address.$dirty, 'has-success': form.street_address.$valid && form.street_address.$touched}">
 							<label class="sr-only" for="street_address">
 								Street Address
 							</label>
 							<input type="text" class="form-control" required name="street_address" ng-model="customer.shipping_street">
 						</div>
-						<div class="form-group">
+						<div class="form-group has-feedback" ng-class="{'has-error': form.street_address_extra.$invalid && form.street_address_extra.$dirty, 'has-success': form.street_address_extra.$valid && form.street_address_extra.$touched}">
 							<label class="sr-only" for="street_address_extra">
 								Street Address Extra
 							</label>
@@ -76,21 +80,25 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<div class="form-group">
+								<div class="form-group has-feedback" ng-class="{'has-error': form.city.$invalid && form.city.$dirty, 'has-success': form.city.$valid && form.city.$touched}">
 									<label class="sr-only" for="city">City</label>
 									<input type="text" class="form-control" required name="city" ng-model="customer.shipping_city">
 								</div>
 							</div>
 							<div class="col-md-2">
-								<div class="form-group">
+								<div class="form-group" ng-class="{'has-error': form.shippingState.$invalid && form.shippingState.$dirty, 'has-success': form.shippingState.$valid && form.shippingState.$touched}">
 									<label class="sr-only" for="shippingState">State</label>
 									<input type="text" class="form-control" required pattern="[A-Z][A-Z]" name="shippingState" ng-model="customer.shipping_state">
 								</div>
 							</div>
 							<div class="col-md-4">
-								<div class="form-group">
+								<div class="form-group has-feedback" ng-class="{'has-error': form.zip.$invalid && form.zip.$dirty, 'has-success': form.zip.$valid && form.zip.$touched}">
 									<label class="sr-only" for="zip">Zip</label>
 									<input type="text" class="form-control" required pattern="\d\d\d\d\d" name="zip" ng-model="customer.shipping_zipcode">
+									<p class="help-block" ng-messages="form.zip.$error">
+										<span ng-message="required">Zip es requerido</span>
+										<span ng-message="pattern">Zip debe tener 5 digitos</span>
+									</p>
 								</div>
 							</div>
 						</div>
@@ -134,13 +142,13 @@
 
 							<footer class="panel-footer">
 								<h3>Billing Address <input type="checkbox"> Same as a shipping? </h3>
-								<div class="form-group">
+								<div class="form-group has-feedback" ng-class="{'has-error': form.street_address_billing.$invalid && form.street_address_billing.$dirty, 'has-success': form.street_address_billing.$valid && form.street_address_billing.$touched}">
 									<label class="sr-only" for="street_address_billing">
 										Street Address
 									</label>
 									<input type="text" class="form-control" required name="street_address_billing" ng-model="customer.billing_street">
 								</div>
-								<div class="form-group">
+								<div class="form-group has-feedback" ng-class="{'has-error': form.street_address_extra_billing.$valid && form.street_address_extra_billing.$dirty, 'has-success': form.street_address_extra_billing.$valid && form.street_address_extra_billing.$touched}">
 									<label class="sr-only" for="street_address_extra_billing">
 										Street Address Extra
 									</label>
@@ -148,19 +156,19 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<div class="form-group">
+										<div class="form-group has-feedback" ng-class="{'has-error': form.city_billing.$invalid && form.city_billing.$dirty, 'has-success': form.city_billing.$valid && form.city_billing.$touched}"}>
 											<label class="sr-only" for="city_billing">City</label>
 											<input type="text" class="form-control" required name="city_billing" ng-model="customer.billing_city">
 										</div>
 									</div>
 									<div class="col-md-2">
-										<div class="form-group">
+										<div class="form-group" ng-class="{'has-error': form.state_billing.$invalid && form.state_billing.$dirty, 'has-success': form.state_billing.$valid && form.state_billing.$touched}">
 											<label class="sr-only" for="state_billing">State</label>
 											<input type="text" class="form-control" required name="state_billing" ng-model="customer.billing_state">
 										</div>
 									</div>
 									<div class="col-md-4">
-										<div class="form-group">
+										<div class="form-group has-feedback" ng-class="{'has-error': form.zip_billing.$invalid && form.zip_billing.$dirty, 'has-success': form.zip_billing.$valid && form.zip_billing.$touched}">
 											<label class="sr-only" for="zip_billing">Zip</label>
 											<input type="text" class="form-control" required name="zip_billing" ng-model="customer.billing_zipcode">
 										</div>
@@ -171,7 +179,7 @@
 					</section>
 				</article>
 				<div class="text-right">
-					<button ng-click="save()" class="btn btn-lg btn-primary">
+					<button ng-click="save()" class="btn btn-lg btn-primary" ng-disabled="form.$invalid || form.$pristine">
 						Save Changes
 					</button>
 				</div>
