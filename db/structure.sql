@@ -27,6 +27,20 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: hstore; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION hstore; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
+
+
 SET search_path = public, pg_catalog;
 
 --
@@ -291,6 +305,7 @@ CREATE TABLE users (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     roles character varying[] DEFAULT '{}'::character varying[],
+    settings hstore DEFAULT ''::hstore,
     CONSTRAINT email_must_be_company_email CHECK (((email)::text ~* '^[^@]+@example\.com'::text))
 );
 
@@ -564,6 +579,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170308204323'),
 ('20170309152337'),
 ('20170329192040'),
-('20170329194244');
+('20170329194244'),
+('20170329203523');
 
 
