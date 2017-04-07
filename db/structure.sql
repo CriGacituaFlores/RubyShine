@@ -143,7 +143,8 @@ CREATE TABLE customers (
     email character varying NOT NULL,
     username character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    insights json DEFAULT '{}'::json
 );
 
 
@@ -580,6 +581,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170309152337'),
 ('20170329192040'),
 ('20170329194244'),
-('20170329203523');
+('20170329203523'),
+('20170407151615');
 
 
