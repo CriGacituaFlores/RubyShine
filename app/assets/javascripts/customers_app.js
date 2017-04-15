@@ -22,6 +22,20 @@ app.config(["$routeProvider",function($routeProvider){
 
 }]);
 
+app.filter("name", function(){
+	return function(input){
+		if (!input){
+			return input;
+		}
+
+		if ((input.toLowerCase() === input) || (input.toUpperCase() === input)){
+			return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+		}else {
+			return input;
+		}
+	}
+});
+
 app.controller("CustomerDetailController", [
 	"$scope","$http","$routeParams","$location","$resource",
 	function($scope,$http,$routeParams,$location,$resource){
