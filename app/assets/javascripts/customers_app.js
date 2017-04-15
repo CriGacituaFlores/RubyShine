@@ -1,5 +1,15 @@
 var app = angular.module('customers',['ngRoute','ngResource','ngMessages','templates']);
 
+app.directive("customerSummary", function() {
+	return {
+		"scope": {
+			"cust": "=",
+			"viewDetailsFunction": "="
+		},
+			"templateUrl": "customer_summary.html"
+		}
+});
+
 app.config(["$routeProvider",function($routeProvider){
 
 	$routeProvider.when("/",{
