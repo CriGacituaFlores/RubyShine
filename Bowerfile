@@ -2,6 +2,7 @@
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
 asset 'bootstrap-sass-official'
+asset 'angular-bootstrap'
 asset 'angular-mocks'
 asset 'angular-route'
 asset 'angular-resource'

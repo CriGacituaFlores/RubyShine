@@ -5,6 +5,7 @@
 		'ngRoute',
 		'ngResource',
 		'ngMessages',
+		'ui.bootstrap',
 		'templates'
 		]
 	);

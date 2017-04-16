@@ -65,7 +65,7 @@
 
 				<article class="panel panel-default">
 					<header class="panel-heading">
-						<h2>Shipping Address</h2>
+						<h2><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Shipping Address</h2>
 					</header>
 
 					<section class="panel-body">
@@ -82,19 +82,19 @@
 							<input type="text" class="form-control" required name="street_address_extra" ng-model="customer.shipping_street">
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-6 col-xs-12">
 								<div class="form-group has-feedback" ng-class="{'has-error': form.city.$invalid && form.city.$dirty, 'has-success': form.city.$valid && form.city.$touched}">
 									<label class="sr-only" for="city">City</label>
 									<input type="text" class="form-control" required name="city" ng-model="customer.shipping_city">
 								</div>
 							</div>
-							<div class="col-md-2">
+							<div class="col-md-2 col-xs-4">
 								<div class="form-group" ng-class="{'has-error': form.shippingState.$invalid && form.shippingState.$dirty, 'has-success': form.shippingState.$valid && form.shippingState.$touched}">
 									<label class="sr-only" for="shippingState">State</label>
 									<input type="text" class="form-control" required pattern="[A-Z][A-Z]" name="shippingState" ng-model="customer.shipping_state">
 								</div>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4 col-xs-8">
 								<div class="form-group has-feedback" ng-class="{'has-error': form.zip.$invalid && form.zip.$dirty, 'has-success': form.zip.$valid && form.zip.$touched}">
 									<label class="sr-only" for="zip">Zip</label>
 									<input type="text" class="form-control" required pattern="\d\d\d\d\d" name="zip" ng-model="customer.shipping_zipcode">
@@ -182,7 +182,9 @@
 					</section>
 				</article>
 				<div class="text-right">
-					<button ng-click="save()" class="btn btn-lg btn-primary" ng-disabled="form.$invalid || form.$pristine">
+					<button class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-ban-circle" aria-hidden="true"></i>
+						Desactivate Customer</button>
+					<button ng-click="save()" class="btn btn-lg btn-primary" ng-disabled="form.$invalid || form.$pristine"><i class="glyphicon glyphicon-save" aria-hidden="true"></i>
 						Save Changes
 					</button>
 				</div>
