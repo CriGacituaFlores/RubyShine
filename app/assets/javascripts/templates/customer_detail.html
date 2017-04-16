@@ -10,6 +10,9 @@
 	<header>
 		<customer-summary cust="customer"></customer-summary>
 	</header>
+	<section>
+		<div uib-alert ng-show="alert" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()">{{alert.message}}</div>
+	</section>
 	<form novalidate name="form">
 
 		<div class="row">

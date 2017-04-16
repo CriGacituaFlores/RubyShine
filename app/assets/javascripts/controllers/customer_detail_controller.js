@@ -33,13 +33,23 @@ app.controller("CustomerDetailController", [
 					function() {
 						$scope.form.$setPristine();
 						$scope.form.$setUntouched();
-						alert("Guardado con exito");
+						$scope.alert = {
+							type: "success",
+							message: "Customer success"
+						};
 					},
-					function() {
-						alert("algo salio mal");
+					function(data) {
+						$scope.alert = {
+							type: "danger",
+							message: "Cliente no pudo ser guardado"
+						};
 					}
 				);
 			}
+		}
+
+		$scope.closeAlert = function(index){
+			$scope.alert = undefined;
 		}
 	}
 ]);
