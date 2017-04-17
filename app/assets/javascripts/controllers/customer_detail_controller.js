@@ -1,7 +1,7 @@
 var app = angular.module('customers');
 app.controller("CustomerDetailController", [
-	"$scope","$http","$routeParams","$location","$resource",
-	function($scope,$http,$routeParams,$location,$resource){
+	"$scope","$http","$routeParams","$location","$resource","$uibModal",
+	function($scope,$http,$routeParams,$location,$resource,$uibModal){
 		//var customerId = $routeParams.id;
 		$scope.customerId = $routeParams.id;
 		var Customer = $resource('/customers/:customerId.json',
@@ -50,6 +50,25 @@ app.controller("CustomerDetailController", [
 
 		$scope.closeAlert = function(index){
 			$scope.alert = undefined;
+		}
+
+		$scope.desactivate = function() {
+			var modalInstance = $uibModal.open({
+				templateUrl: 'confirm_desactivate.html',
+				controller: 'ConfirmDesactivateController'
+			});
+
+			modalInstance.result.then(function () {
+				$scope.alert = {
+					type: 'success',
+					message: 'Customer desactivated'
+				}
+			}, function(reason) {
+				$scope.alert = {
+					type: 'warning',
+					message: 'Customer still activate'
+				}
+			});
 		}
 	}
 ]);
